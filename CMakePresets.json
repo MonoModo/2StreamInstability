@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 20,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "linux-mingw-x64",
+      "displayName": "Linux to Windows x64 (MinGW-w64)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/linux-mingw-x64",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchains/mingw-w64-x86_64.cmake"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "linux-mingw-x64-release",
+      "displayName": "Windows x64 Release",
+      "configurePreset": "linux-mingw-x64"
+    }
+  ]
+}
