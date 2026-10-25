@@ -1,0 +1,5 @@
+enum shaderOptions {
+    DefaultFS,
+    DefaultVS
+
+};

@@ -15,6 +15,8 @@
 #CXX = clang++
 
 EXE = example_glfw_opengl3
+PROCESSORS ?= $(shell getconf _NPROCESSORS_ONLN 2>/dev/null || echo 1)
+BUILD_JOBS = $(shell count=$$(( $(PROCESSORS) * 8 / 10 )); if [ $$count -lt 1 ]; then count=1; fi; echo $$count)
 IMGUI_DIR = ../imgui
 SOURCES = main.cpp
 SOURCES += $(IMGUI_DIR)/imgui.cpp $(IMGUI_DIR)/imgui_demo.cpp $(IMGUI_DIR)/imgui_draw.cpp $(IMGUI_DIR)/imgui_tables.cpp $(IMGUI_DIR)/imgui_widgets.cpp
@@ -60,7 +62,8 @@ endif
 %.o:$(IMGUI_DIR)/backends/%.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
-all: $(EXE)
+all:
+	$(MAKE) --no-print-directory -j$(BUILD_JOBS) $(EXE)
 	@echo Build complete for $(ECHO_MESSAGE)
 
 $(EXE): $(OBJS)

@@ -7,6 +7,15 @@
   },
   "configurePresets": [
     {
+      "name": "linux-native",
+      "displayName": "Linux x64 Native",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/linux-native",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
       "name": "linux-mingw-x64",
       "displayName": "Linux to Windows x64 (MinGW-w64)",
       "generator": "Ninja",
@@ -18,6 +27,11 @@
     }
   ],
   "buildPresets": [
+    {
+      "name": "linux-native-release",
+      "displayName": "Linux Native Release",
+      "configurePreset": "linux-native"
+    },
     {
       "name": "linux-mingw-x64-release",
       "displayName": "Windows x64 Release",
